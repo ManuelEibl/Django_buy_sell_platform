@@ -1,0 +1,53 @@
+body
+{
+    padding: 10px;
+}
+
+.entry_field
+{
+    position: absolute;
+    left: 300px;
+}
+
+.no_style_ref
+{
+    text-decoration: none;
+}
+
+.listing_container
+{
+    display: table;
+    position: relative;
+    width: 800px;
+    height: 250px;
+    background-color: none;
+    color: black;
+}
+
+.preview_image
+{
+    display: table-cell;
+    vertical-align: middle;
+    width: 250px;
+    height: 250px;
+}
+
+.preview_text
+{
+    vertical-align: middle;
+    display: table-cell;
+    width: 400px;
+}
+
+.preview_text p {
+    color: grey;
+}
+
+.line_break
+{
+    display: table;
+}
+
+.listing_image {
+    height: 400px;
+}
