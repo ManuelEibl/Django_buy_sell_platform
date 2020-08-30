@@ -6,7 +6,7 @@ from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -298,6 +298,9 @@ def categories(request):
 
 def category(request, category):
     listings = Listing.objects.filter(category__exact=category)
+    print(listings)
+    if len(listings) == 0:
+        raise Http404
 
     return render(request, "auctions/category.html", {
         "category": category,
