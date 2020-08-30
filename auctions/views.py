@@ -21,7 +21,7 @@ class NewListingForm(forms.Form):
 
 
 def index(request):
-    listings = Listing.objects.all()
+    listings = Listing.objects.filter(status='live')
     return render(request, "auctions/index.html", {
         'listings': listings
     })
@@ -285,3 +285,21 @@ def watchlist(request, user_id):
         "listings": user_list
     })
 
+def categories(request):
+    existing_categories = Listing.objects.values('category')
+    list_of_categories = []
+    for category in existing_categories:
+        if category["category"] != '' and category["category"] not in list_of_categories:
+            list_of_categories.append(category["category"])
+    
+    return render(request, "auctions/categories.html", {
+        "categories": list_of_categories
+    })
+
+def category(request, category):
+    listings = Listing.objects.filter(category__exact=category)
+
+    return render(request, "auctions/category.html", {
+        "category": category,
+        "listings": listings
+    })
